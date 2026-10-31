@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bot Dofus 1.29 | AutoFarm Premium</title>
+<style>
+:root {
+  --bg: #0a0c0e;
+  --surface: #12161b;
+  --gold: #d4af37;
+  --gold-dim: #8a7020;
+  --text: #e8e6e3;
+  --muted: #8b8a86;
+  --accent: #c0392b;
+  --border: #1e242b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,12,14,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  display: flex; justify-content: space-between; align-items: center;
+  height: 70px;
+}
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+.logo span { color: var(--text); }
+nav a { color: var(--muted); text-decoration: none; margin-left: 28px; font-size: .95rem; transition: color .2s; }
+nav a:hover { color: var(--gold); }
+.hero {
+  padding: 120px 0 80px;
+  text-align: center;
+  background: radial-gradient(ellipse at top, #1a1208 0%, var(--bg) 70%);
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+.hero p { font-size: 1.15rem; color: var(--muted); max-width: 620px; margin: 0 auto 36px; }
+.cta {
+  display: inline-block;
+  background: var(--gold);
+  color: #000;
+  padding: 14px 32px;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+}
+.cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,.3); }
+.cta-secondary {
+  display: inline-block;
+  margin-left: 12px;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.section { padding: 80px 0; }
+.section h2 { font-size: 2.2rem; text-align: center; margin-bottom: 12px; }
+.section .sub { text-align: center; color: var(--muted); margin-bottom: 48px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color .2s, transform .2s;
+}
+.card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
+.card h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.2rem; }
+.card p { color: var(--muted); font-size: .95rem; }
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+.price-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 28px;
+  text-align: center;
+  position: relative;
+}
+.price-card.featured {
+  border-color: var(--gold);
+  transform: scale(1.03);
+}
+.price-card.featured::before {
+  content: "POPULAIRE";
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: #000; font-size: .7rem; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px;
+}
+.price { font-size: 2.8rem; font-weight: 800; color: var(--gold); margin: 16px 0 8px; }
+.price span { font-size: 1rem; color: var(--muted); }
+.features-list { list-style: none; margin: 24px 0; text-align: left; }
+.features-list li { padding: 6px 0; color: var(--muted); }
+.features-list li::before { content: "✓ "; color: var(--gold); }
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.badge {
+  display: inline-block;
+  background: rgba(212,175,55,.15);
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: .75rem;
+  margin-bottom: 12px;
+}
+@media (max-width: 640px) {
+  .cta-secondary { display: block; margin: 12px auto 0; width: fit-content; }
+  nav a { margin-left: 16px; font-size: .85rem; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="logo">BOT<span>DOFUS</span></div>
+    <nav>
+      <a href="#features">Fonctions</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#discord">Discord</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge">COMPATIBLE 1.29</div>
+    <h1>Le bot Dofus 1.29<br><em>qui farm pendant que tu dors</em></h1>
+    <p>Collecte auto, pathing intelligent, multi-compte. Interface simple, mises à jour constantes. Construit pour les serveurs privés 1.29.</p>
+    <a href="#pricing" class="cta">Voir les offres</a>
+    <a href="#discord" class="cta-secondary">Rejoindre le Discord</a>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="container">
+    <h2>Fonctions</h2>
+    <p class="sub">Tout ce qu'il faut pour farm propre sur 1.29</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Collecte automatique</h3>
+        <p>Récolte ressources, monstres, donjons. Priorités personnalisables, gestion inventaire, banque auto.</p>
+      </div>
+      <div class="card">
+        <h3>Pathing intelligent</h3>
+        <p>Cartes 1.29 mappées. Évite les zones à risque, optimise les trajets, reprend après déco.</p>
+      </div>
+      <div class="card">
+        <h3>Multi-compte</h3>
+        <p>Lance plusieurs comptes en parallèle. Synchronisation équipe, suivi indépendant.</p>
+      </div>
+      <div class="card">
+        <h3>Interface claire</h3>
+        <p>Dashboard temps réel, logs, stats de farm. Configuration en quelques clics, pas de code.</p>
+      </div>
+      <div class="card">
+        <h3>Anti-détection</h3>
+        <p>Comportements humains, délais variables, pauses aléatoires. Conçu pour durer sur 1.29.</p>
+      </div>
+      <div class="card">
+        <h3>Mises à jour</h3>
+        <p>Adapté aux serveurs privés 1.29 actifs. Correctifs rapides, nouvelles maps sur demande.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing" style="background: var(--surface);">
+  <div class="container">
+    <h2>Tarifs</h2>
+    <p class="sub">Choisis ton niveau. Accès Discord inclus sur toutes les offres.</p>
+    <div class="pricing">
+      <div class="price-card">
+        <h3>Starter</h3>
+        <div class="price">15€ <span>/mois</span></div>
+        <ul class="features-list">
+          <li>1 compte</li>
+          <li>Collecte auto</li>
+          <li>Pathing de base</li>
+          <li>Support Discord</li>
+        </ul>
+        <a href="#discord" class="cta">Commencer</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Premium</h3>
+        <div class="price">29€ <span>/mois</span></div>
+        <ul class="features-list">
+          <li>Jusqu'à 5 comptes</li>
+          <li>Pathing avancé</li>
+          <li>Priorités custom</li>
+          <li>Stats détaillées</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <a href="#discord" class="cta">Choisir Premium</a>
+      </div>
+      <div class="price-card">
+        <h3>Lifetime</h3>
+        <div class="price">89€ <span>une fois</span></div>
+        <ul class="features-list">
+          <li>Comptes illimités</li>
+          <li>Toutes les fonctions</li>
+          <li>Mises à jour à vie</li>
+          <li>Config sur mesure</li>
+        </ul>
+        <a href="#discord" class="cta">Prendre Lifetime</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="discord">
+  <div class="container" style="text-align: center;">
+    <h2>Discord</h2>
+    <p class="sub">Téléchargement, setup, support, nouvelles maps — tout passe par le Discord.</p>
+    <a href="https://discord.gg/ojailbreaks" class="cta" target="_blank">Rejoindre le serveur</a>
+    <p style="margin-top: 20px; color: var(--muted); font-size: .9rem;">Remplace le lien par le tien. Le site est prêt à héberger.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Bot Dofus 1.29 — outil pour serveurs privés. Utilisation à tes risques.
+  </div>
+</footer>
+</body>
+</html>
